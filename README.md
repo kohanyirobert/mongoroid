@@ -46,7 +46,7 @@ mvn install
 
 ## Usage
 ```java
-// get a connection to one or more database instance
+// get a connection to one or more database instances
 MongoConnection connection = MongoConnections.get();
 
 // get a database over the connection
