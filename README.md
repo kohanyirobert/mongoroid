@@ -74,11 +74,11 @@ collection.insert(MongoInserts.builder()
 ### Advanced Usage
 ```java
 // get a seed list for the database istances you wish to communicate with
- MongoSeed seed = MongoSeeds.builder()
-        .address("a.com", 27018)
-        .address("b.com", 27019)
-        .address("c.com", 27020)
-        .build();
+MongoSeed seed = MongoSeeds.builder()
+    .address("a.com", 27018)
+    .address("b.com", 27019)
+    .address("c.com", 27020)
+    .build();
 
 // get a configration for the connection to be create in the following steps
 MongoConfig config = MongoConfigs.builder()
