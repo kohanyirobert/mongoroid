@@ -45,8 +45,9 @@ mvn install
 ```
 
 ## Usage
+### Simple Usage
 ```java
-// get a connection to one or more database instances
+// get a connection to the default database instance
 MongoConnection connection = MongoConnections.get();
 
 // get a database over the connection
@@ -67,6 +68,45 @@ try (MongoCursor cursor = collection.find(MongoFinds.get())) {
 collection.insert(MongoInserts.builder()
     .documents(BsonDocuments.of("key", "value"))
     .build());
+
+// ...
+```
+### Advanced Usage
+```java
+// get a seed list for the database istances you wish to communicate with
+ MongoSeed seed = MongoSeeds.builder()
+        .address("a.com", 27018)
+        .address("b.com", 27019)
+        .address("c.com", 27020)
+        .build();
+
+// get a configration for the connection to be create in the following steps
+MongoConfig config = MongoConfigs.builder()
+    .poolSize(3)
+    .connectTimeout(10, TimeUnit.SECONDS)
+    .refreshTimeout(60, TimeUnit.MINUTES)
+    .build();
+
+// get a read preference which influences the behaviour of read operations
+MongoReadPreference readPreference = MongoReadPreferences.builder()
+    .primary(true)
+    .secondary(true)
+    .tags(BsonDocuments.of("test", "ok"))
+    .build();
+
+// get a write preference which influences the behavior write operations
+MongoWritePreference writePreference = MongoWritePreferences.builder()
+    .w("test")
+    .journal(true)
+    .build();
+
+// finally get a connection using the previously create objects
+MongoConnection connection = MongoConnections.builder()
+    .seed(seed)
+    .config(config)
+    .readPreference(readPreference)
+    .writePreference(writePreference)
+    .build();
 
 // ...
 ```
