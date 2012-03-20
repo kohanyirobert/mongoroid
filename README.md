@@ -59,7 +59,7 @@ MongoCollection collection = database.collection("test");
 try (MongoCursor cursor = collection.find(MongoFinds.get())) {
   while (cursor.hasNext()) {
     BsonDocument document = cursor.next();
-    System.out.println(document);
+    ...
   }
 }
 
