@@ -2,6 +2,7 @@ package com.github.kohanyirobert.mongoroid;
 
 import com.github.kohanyirobert.ebson.BsonDocuments;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,6 +26,12 @@ public final class MongoCollectionSimpleSingleIndexTest
         .documents(BsonDocuments.of("a", "b"))
         .documents(BsonDocuments.of("a", "c"))
         .build());
+  }
+
+  @Override
+  @After
+  public void tearDown() throws MongoException {
+    database.command(BsonDocuments.of("dropIndexes", "test", "index", "*"));
   }
 
   @Test
