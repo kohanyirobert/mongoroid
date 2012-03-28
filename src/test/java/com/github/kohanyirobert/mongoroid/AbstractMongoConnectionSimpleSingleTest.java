@@ -24,6 +24,11 @@ public abstract class AbstractMongoConnectionSimpleSingleTest {
             .build())
         .build();
     connection.database("admin").login("admin", "admin");
+    // there's a very vague issue with logins and sockets because as I've
+    // noticed that if a communication goes through a socket which is
+    // resolved as "127.0.0.1" mongodb grants read-write permission for every
+    // database with an admin login, but not otherwise (not confirmed tho')
+    connection.database("test").login("test", "test");
   }
 
   // @do-not-check DesignForExtension
