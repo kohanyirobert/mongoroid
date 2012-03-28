@@ -33,7 +33,9 @@ final class MongoExceptions {
 
       String err = document.containsKey("err")
           ? document.get("err", String.class)
-          : "";
+          : document.containsKey("$err")
+              ? document.get("$err", String.class)
+              : "";
 
       String assertion = document.containsKey("assertion")
           ? document.get("assertion", String.class)
