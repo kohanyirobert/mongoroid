@@ -130,6 +130,7 @@ final class DefaultCollection implements MongoCollection {
     MongoMessageInsert message = new DefaultMessageInsert();
     message.fullCollectionName(database.name() + "." + name);
     message.documents(insert.documents());
+    message.continueOnError(insert.continueOnError());
     database.tell(message);
   }
 
