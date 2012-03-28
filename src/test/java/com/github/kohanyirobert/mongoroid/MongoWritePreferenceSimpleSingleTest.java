@@ -40,6 +40,7 @@ public final class MongoWritePreferenceSimpleSingleTest {
       collection.insert(MongoInserts.builder()
           .documents(BsonDocuments.of())
           .build());
+      collection.remove(MongoRemoves.get());
     }
   }
 
@@ -57,6 +58,7 @@ public final class MongoWritePreferenceSimpleSingleTest {
       collection.insert(MongoInserts.builder()
           .documents(BsonDocuments.of("a", "b"))
           .build());
+      collection.remove(MongoRemoves.get());
     }
   }
 }

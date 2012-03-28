@@ -1,7 +1,6 @@
 package com.github.kohanyirobert.mongoroid;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 
 public abstract class AbstractMongoConnectionSimpleSingleTest {
@@ -36,9 +35,6 @@ public abstract class AbstractMongoConnectionSimpleSingleTest {
   @After
   public void tearDown() throws MongoException {
     connection.database("test").collection("test").remove(MongoRemoves.get());
-    // this makes sure that after running tests the
-    // collection is cleared before closing the connection
-    Assert.assertEquals(0, connection.database("test").collection("test").count(MongoCounts.get()));
     connection.close();
   }
 }
