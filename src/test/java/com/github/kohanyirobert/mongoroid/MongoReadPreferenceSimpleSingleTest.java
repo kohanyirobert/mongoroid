@@ -1,5 +1,6 @@
 package com.github.kohanyirobert.mongoroid;
 
+import com.github.kohanyirobert.ebson.BsonDocument;
 import com.github.kohanyirobert.ebson.BsonDocuments;
 
 import com.google.common.net.HostAndPort;
@@ -64,13 +65,13 @@ public final class MongoReadPreferenceSimpleSingleTest {
   public void readPreferenceSecondaryOnly() throws MongoException {
     try (MongoConnection connection = builder.readPreference(
         MongoReadPreferences.builder()
-            .primary(true)
-            .secondary(false)
+            .primary(false)
+            .secondary(true)
             .build())
         .build()) {
       for (int i = 0; i < 100; i++)
         Assert.assertTrue(connection.database("admin").command("isMaster")
-            .get("ismaster", Boolean.class).booleanValue());
+            .get("secondary", Boolean.class).booleanValue());
     }
   }
 
@@ -79,7 +80,9 @@ public final class MongoReadPreferenceSimpleSingleTest {
     try (MongoConnection connection = builder.readPreference(
         MongoReadPreferences.builder()
             .primary(false)
-            .secondary(true)
+            .secondary(false)
+            // the server tagged with a is secondary
+            .tags(BsonDocuments.of("notebook", "a"))
             .build())
         .build()) {
       for (int i = 0; i < 100; i++)
@@ -94,14 +97,15 @@ public final class MongoReadPreferenceSimpleSingleTest {
         MongoReadPreferences.builder()
             .primary(false)
             .secondary(false)
-            .tags(BsonDocuments.of("notebook", "a"),
-                BsonDocuments.of("notebook", "b"))
+            // the servers tagged with a and b are secondaries
+            .tags(BsonDocuments.of("notebook", "a"), BsonDocuments.of("notebook", "b"))
             .build())
         .build()) {
       for (int i = 0; i < 100; i++) {
-        int port = HostAndPort.fromString(connection.database("admin")
-            .command("isMaster").get("me", String.class)).getPort();
+        BsonDocument isMaster = connection.database("admin").command("isMaster");
+        int port = HostAndPort.fromString(isMaster.get("me", String.class)).getPort();
         Assert.assertTrue(port == 27018 || port == 27019);
+        Assert.assertTrue(isMaster.get("secondary", Boolean.class).booleanValue());
       }
     }
   }
