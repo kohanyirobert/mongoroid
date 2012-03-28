@@ -59,6 +59,7 @@ final class DefaultCollection implements MongoCollection {
   public MongoCursor find(MongoFind find) {
     MongoMessageQuery query = new DefaultMessageQuery();
     query.fullCollectionName(database.name() + "." + name);
+    query.slaveOk(database().connection().readPreference().secondary());
 
     if (!find.fields().isEmpty())
       query.returnFieldSelector(find.fields());
