@@ -73,7 +73,8 @@ final class MongoExceptions {
   }
 
   public static boolean ok(BsonDocument lastError) {
-    return lastError.get("ok", Number.class).doubleValue() == 1.0;
+    return lastError.get("ok", Number.class).doubleValue() == 1.0
+        && lastError.get("err") == null;
   }
 
   public static boolean ok(MongoMessageReply reply) {
