@@ -52,7 +52,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
   </properties>
 
   <dependencies>
@@ -70,7 +70,7 @@
     <dependency>
       <groupId>org.mongodb</groupId>
       <artifactId>mongo-java-driver</artifactId>
-      <version>2.7.3</version>
+      <version>2.9.1</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -78,7 +78,7 @@
   <build>
     <resources>
       <resource>
-        <directory>${basedir}</directory>
+        <directory>${project.basedir}</directory>
         <targetPath>${project.build.outputDirectory}/META-INF</targetPath>
         <filtering>false</filtering>
         <includes>
@@ -92,7 +92,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
+        <version>2.5.1</version>
         <configuration>
           <source>1.7</source>
           <target>1.7</target>
@@ -101,7 +101,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <version>2.1.2</version>
+        <version>2.2</version>
         <executions>
           <execution>
             <id>attach-sources</id>
@@ -141,7 +141,7 @@
               <goal>check</goal>
             </goals>
             <configuration>
-              <configLocation>https://raw.github.com/kohanyirobert/checkstyle/master/checkstyle-main.xml</configLocation>
+              <configLocation>https://raw.github.com/kohanyirobert/checkstyle/master/main.xml</configLocation>
             </configuration>
           </execution>
           <execution>
@@ -151,7 +151,7 @@
               <goal>check</goal>
             </goals>
             <configuration>
-              <configLocation>https://raw.github.com/kohanyirobert/checkstyle/master/checkstyle-test.xml</configLocation>
+              <configLocation>https://raw.github.com/kohanyirobert/checkstyle/master/test.xml</configLocation>
               <includeTestSourceDirectory>true</includeTestSourceDirectory>
             </configuration>
           </execution>
