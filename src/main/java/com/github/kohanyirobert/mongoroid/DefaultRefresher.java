@@ -3,6 +3,7 @@ package com.github.kohanyirobert.mongoroid;
 import com.github.kohanyirobert.ebson.BsonDocument;
 import com.github.kohanyirobert.ebson.BsonDocuments;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Iterables;
@@ -231,7 +232,7 @@ final class DefaultRefresher implements MongoRefresher {
 
       for (String actualKey : actualTag.keySet())
         if (preferredTag.containsKey(actualKey)
-            && actualTag.get(actualKey).equals(preferredTag.get(actualKey)))
+            && Objects.equal(actualTag.get(actualKey), preferredTag.get(actualKey)))
           readByTags = true;
 
       if (readByTags)

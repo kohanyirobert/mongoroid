@@ -2,6 +2,7 @@ package com.github.kohanyirobert.mongoroid;
 
 import com.github.kohanyirobert.ebson.BsonDocument;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 
 final class HasKeyValuePairPredicate implements Predicate<BsonDocument> {
@@ -16,6 +17,6 @@ final class HasKeyValuePairPredicate implements Predicate<BsonDocument> {
 
   @Override
   public boolean apply(BsonDocument input) {
-    return input.containsKey(key) && input.get(key).equals(value);
+    return input.containsKey(key) && Objects.equal(input.get(key), value);
   }
 }
