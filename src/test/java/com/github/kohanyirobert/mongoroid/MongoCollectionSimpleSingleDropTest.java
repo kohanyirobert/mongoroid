@@ -19,7 +19,7 @@ public final class MongoCollectionSimpleSingleDropTest
     database = connection.database("test");
   }
 
-  @Test(expected = MongoNamespaceException.class)
+  @Test(expected = MongoException.class)
   public void dropNonExistentCollection() throws MongoException {
     MongoCollection collection = database.collection("drop");
     collection.drop();
@@ -27,6 +27,7 @@ public final class MongoCollectionSimpleSingleDropTest
 
   @Test
   public void dropExistingCollection() throws MongoException {
+    // in some rare cases this test hangs, but I don't know why yet
     MongoCollection collection = database.collection("drop");
     collection.insert(MongoInserts.builder()
         .documents(BsonDocuments.of("drop", "drop"))

@@ -27,7 +27,7 @@ public final class MongoCollectionSimpleSingleInsertTest
     collection = database.collection("test");
   }
 
-  // @do-not-check MethodLength
+  // @do-not-check-next-line MethodLength
   @Test
   public void insertHandfulOfSimpleDocuments() throws MongoException {
     Iterable<BsonDocument> documents = ImmutableList.<BsonDocument>builder()
@@ -43,7 +43,7 @@ public final class MongoCollectionSimpleSingleInsertTest
         .documents(documents)
         .build());
 
-    // @do-not-check InnerAssignment
+    // @do-not-check-next-line InnerAssignment
     try (final MongoCursor cursor = collection.find(MongoFinds.get())) {
       while (cursor.hasNext()) {
         final BsonDocument document = cursor.next();

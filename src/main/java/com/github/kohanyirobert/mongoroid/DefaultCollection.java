@@ -5,7 +5,7 @@ import com.github.kohanyirobert.ebson.BsonDocuments;
 
 import com.google.common.base.Objects;
 
-// @do-not-check ClassFanOutComplexity
+// @do-not-check-next-line ClassFanOutComplexity
 final class DefaultCollection implements MongoCollection {
 
   final String name;
@@ -54,7 +54,7 @@ final class DefaultCollection implements MongoCollection {
     return command(command.build()).get("n", Double.class).intValue();
   }
 
-  // @do-not-check .
+  // @do-not-check-next-line CyclomaticComplexity|MethodLength
   @Override
   public MongoCursor find(MongoFind find) {
     MongoMessageQuery query = new DefaultMessageQuery();
@@ -68,7 +68,9 @@ final class DefaultCollection implements MongoCollection {
       query.numberToSkip(find.skip());
 
     if (find.limit() > 0)
-      query.numberToReturn(find.limit());
+      query.numberToReturn(find.close()
+          ? -1 * find.limit()
+          : find.limit());
 
     BsonDocument.Builder builder = BsonDocuments.builder()
         .put("query", find.selector());
@@ -99,7 +101,7 @@ final class DefaultCollection implements MongoCollection {
     return command(command.build()).get("values", BsonDocument.class);
   }
 
-  // @do-not-check CyclomaticComplexity
+  // @do-not-check-next-line CyclomaticComplexity
   @Override
   public BsonDocument modify(MongoModify modify) throws MongoException {
     BsonDocument.Builder command = BsonDocuments.builder()

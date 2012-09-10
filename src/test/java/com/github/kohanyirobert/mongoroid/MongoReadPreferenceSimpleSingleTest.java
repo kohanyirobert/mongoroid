@@ -81,8 +81,7 @@ public final class MongoReadPreferenceSimpleSingleTest {
         MongoReadPreferences.builder()
             .primary(false)
             .secondary(false)
-            // the server tagged with a is secondary
-            .tags(BsonDocuments.of("notebook", "a"))
+            .tags(BsonDocuments.of("test", "27018"))
             .build())
         .build()) {
       for (int i = 0; i < 100; i++)
@@ -97,8 +96,7 @@ public final class MongoReadPreferenceSimpleSingleTest {
         MongoReadPreferences.builder()
             .primary(false)
             .secondary(false)
-            // the servers tagged with a and b are secondaries
-            .tags(BsonDocuments.of("notebook", "a"), BsonDocuments.of("notebook", "b"))
+            .tags(BsonDocuments.of("test", "27018"), BsonDocuments.of("test", "27019"))
             .build())
         .build()) {
       for (int i = 0; i < 100; i++) {

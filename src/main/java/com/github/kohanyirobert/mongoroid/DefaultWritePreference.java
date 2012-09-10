@@ -15,7 +15,7 @@ final class DefaultWritePreference implements MongoWritePreference {
   private final boolean j;
   private final boolean journal;
 
-  // @do-not-check ParameterNumber
+  // @do-not-check-next-line ParameterNumber
   DefaultWritePreference(
       String w,
       int wTimeout, TimeUnit wTimeoutUnit,
@@ -66,7 +66,7 @@ final class DefaultWritePreference implements MongoWritePreference {
         Boolean.valueOf(journal()));
   }
 
-  // @do-not-check CyclomaticComplexity
+  // @do-not-check-next-line CyclomaticComplexity
   @Override
   public boolean equals(Object object) {
     if (object instanceof MongoWritePreference) {

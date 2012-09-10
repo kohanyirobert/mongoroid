@@ -12,7 +12,7 @@ final class DefaultModify implements MongoModify {
   private final boolean modified;
   private final boolean upsert;
 
-  // @do-not-check ParameterNumber
+  // @do-not-check-next-line ParameterNumber
   DefaultModify(
       BsonDocument selector,
       BsonDocument document,

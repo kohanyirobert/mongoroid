@@ -6,11 +6,11 @@ import com.github.kohanyirobert.ebson.BsonDocuments;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 
-// @checkstyle:off CyclomaticComplexity
 final class MongoExceptions {
 
   private MongoExceptions() {}
 
+  // @do-not-check-next-line CyclomaticComplexity
   public static void check(BsonDocument lastError) throws MongoException {
     if (!ok(lastError)) {
       String err = lastError.containsKey("err")
@@ -26,7 +26,7 @@ final class MongoExceptions {
     }
   }
 
-  // @do-not-check MethodLength
+  // @do-not-check-next-line CyclomaticComplexity|MethodLength
   public static void check(MongoMessageReply reply) throws MongoException {
     if (!ok(reply)) {
       BsonDocument document = Iterables.getFirst(reply.documents(), BsonDocuments.of());
@@ -56,19 +56,7 @@ final class MongoExceptions {
         throw new MongoAssertionException(String.format("(%s) %s", assertionCode, assertion));
 
       else if (!"".equals(errmsg))
-        switch (errmsg) {
-          case "auth fails":
-            throw new MongoLoginException(errmsg);
-          case "need to login":
-            throw new MongoLogoutException(errmsg);
-          case "access denied; use admin db":
-            throw new MongoAccessDeniedException(errmsg);
-          case "ns not found":
-            throw new MongoNamespaceException(errmsg);
-          default:
-            throw new MongoException(errmsg);
-        }
-
+        throw new MongoException(errmsg);
     }
   }
 

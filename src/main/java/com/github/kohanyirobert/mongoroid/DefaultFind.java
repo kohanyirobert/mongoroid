@@ -12,8 +12,9 @@ final class DefaultFind implements MongoFind {
   private final boolean explain;
   private final boolean snapshot;
   private final BsonDocument hint;
+  private final boolean close;
 
-  // @do-not-check ParameterNumber
+  // @do-not-check-next-line ParameterNumber
   DefaultFind(
       BsonDocument selector,
       BsonDocument fields,
@@ -22,7 +23,8 @@ final class DefaultFind implements MongoFind {
       BsonDocument sort,
       boolean explain,
       boolean snapshot,
-      BsonDocument hint) {
+      BsonDocument hint,
+      boolean close) {
     this.selector = selector;
     this.fields = fields;
     this.skip = skip;
@@ -31,6 +33,7 @@ final class DefaultFind implements MongoFind {
     this.explain = explain;
     this.snapshot = snapshot;
     this.hint = hint;
+    this.close = close;
   }
 
   @Override
@@ -71,5 +74,10 @@ final class DefaultFind implements MongoFind {
   @Override
   public BsonDocument hint() {
     return hint;
+  }
+
+  @Override
+  public boolean close() {
+    return close;
   }
 }

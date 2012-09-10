@@ -58,7 +58,7 @@ final class MongoSockets {
         TimeUnit.MILLISECONDS);
   }
 
-  // @do-not-check ParameterNumber
+  // @do-not-check-next-line ParameterNumber
   public static Socket get(
       InetSocketAddress address,
       int connectTimeout,

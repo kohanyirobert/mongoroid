@@ -10,7 +10,7 @@ public final class MongoDatabaseSimpleSingleCommandTest
 
   public MongoDatabaseSimpleSingleCommandTest() {}
 
-  @Test(expected = MongoAccessDeniedException.class)
+  @Test(expected = MongoException.class)
   public void adminCommandAgainstNonAdminDatabase() throws MongoException {
     connection.database("test").command("replSetGetStatus");
   }

@@ -16,6 +16,7 @@ final class DefaultFindBuilder implements MongoFind.Builder {
   private boolean explain;
   private boolean snapshot;
   private BsonDocument hint = BsonDocuments.of();
+  private boolean close;
 
   DefaultFindBuilder() {}
 
@@ -76,6 +77,13 @@ final class DefaultFindBuilder implements MongoFind.Builder {
   }
 
   @Override
+  public Builder close(boolean close) {
+    Preconditions.checkArgument(sort.isEmpty());
+    this.close = close;
+    return this;
+  }
+
+  @Override
   public MongoFind build() {
     return new DefaultFind(
         selector,
@@ -85,6 +93,7 @@ final class DefaultFindBuilder implements MongoFind.Builder {
         sort,
         explain,
         snapshot,
-        hint);
+        hint,
+        close);
   }
 }

@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
-// @do-not-check Class(FanOutComplexity|DataAbstractionCoupling)
+// @do-not-check-next-line Class(FanOutComplexity|DataAbstractionCoupling)
 final class DefaultRefresher implements MongoRefresher {
 
   private final DefaultConnection connection;
@@ -177,7 +177,7 @@ final class DefaultRefresher implements MongoRefresher {
     return knownAddresses;
   }
 
-  // @do-not-check CyclomaticComplexity
+  // @do-not-check-next-line CyclomaticComplexity
   private void determineSayAndTellAddresses() throws MongoException {
     for (InetSocketAddress address : addresses) {
       Socket socket = null;
@@ -193,7 +193,7 @@ final class DefaultRefresher implements MongoRefresher {
     }
   }
 
-  // @do-not-check CyclomaticComplexity
+  // @do-not-check-next-line CyclomaticComplexity
   private void determinReadAndWriteAddressesThrough(
       Socket socket,
       InetSocketAddress address) throws MongoException {
@@ -221,7 +221,7 @@ final class DefaultRefresher implements MongoRefresher {
     }
   }
 
-  // @do-not-check CyclomaticComplexity
+  // @do-not-check-next-line CyclomaticComplexity
   private boolean determineReadByTags(BsonDocument actualTag) {
     boolean readByTags = false;
 
@@ -273,7 +273,7 @@ final class DefaultRefresher implements MongoRefresher {
 
     public Refresher() {}
 
-    // @do-not-check CyclomaticComplexity
+    // @do-not-check-next-line CyclomaticComplexity
     @SuppressWarnings("synthetic-access")
     @Override
     public void run() {

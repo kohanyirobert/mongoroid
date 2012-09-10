@@ -21,6 +21,8 @@ public interface MongoFind {
 
   BsonDocument hint();
 
+  boolean close();
+
   interface Builder {
 
     Builder selector(BsonDocument selector);
@@ -38,6 +40,8 @@ public interface MongoFind {
     Builder snapshot(boolean snapshot);
 
     Builder hint(BsonDocument hint);
+
+    Builder close(boolean close);
 
     MongoFind build();
   }

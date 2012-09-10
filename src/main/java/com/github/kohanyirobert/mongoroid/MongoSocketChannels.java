@@ -15,12 +15,12 @@ final class MongoSocketChannels {
 
   private MongoSocketChannels() {}
 
-  // @do-not-check JavaNCSS|MethodLength
+  // @do-not-check-next-line JavaNCSS|MethodLength
   public static SocketChannel get(final Socket socket) throws MongoException {
     try {
       final ReadableByteChannel in = Channels.newChannel(socket.getInputStream());
       final WritableByteChannel out = Channels.newChannel(socket.getOutputStream());
-      // @do-not-check AnonInnerLength
+      // @do-not-check-next-line AnonInnerLength
       return new SocketChannel(null) {
 
         @Override

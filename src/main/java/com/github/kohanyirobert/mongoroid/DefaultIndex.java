@@ -11,7 +11,7 @@ final class DefaultIndex implements MongoIndex {
   private final boolean dropDuplicates;
   private final boolean background;
 
-  // @do-not-check ParameterNumber
+  // @do-not-check-next-line ParameterNumber
   DefaultIndex(
       BsonDocument selector,
       String name,

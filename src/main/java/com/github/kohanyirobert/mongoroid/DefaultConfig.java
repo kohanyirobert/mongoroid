@@ -23,7 +23,7 @@ final class DefaultConfig implements MongoConfig {
   private final int poolSize;
   private final int bufferSize;
 
-  // @do-not-check ParameterNumber
+  // @do-not-check-next-line ParameterNumber
   DefaultConfig(
       int connectTimeout, TimeUnit connectTimeoutUnit,
       int readTimeout, TimeUnit readTimeoutUnit,
@@ -114,7 +114,7 @@ final class DefaultConfig implements MongoConfig {
         Integer.valueOf(bufferSize()));
   }
 
-  // @do-not-check CyclomaticComplexity
+  // @do-not-check-next-line CyclomaticComplexity
   @Override
   public boolean equals(Object object) {
     if (object instanceof MongoConfig) {

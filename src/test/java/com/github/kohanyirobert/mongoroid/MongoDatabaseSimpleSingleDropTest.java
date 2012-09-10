@@ -19,7 +19,7 @@ public final class MongoDatabaseSimpleSingleDropTest
   }
 
   @Ignore("in my opinion this should throw, but the server returns ok")
-  @Test(expected = MongoNamespaceException.class)
+  @Test(expected = MongoException.class)
   public void dropNonExistentDatabase() throws MongoException {
     database.drop();
   }

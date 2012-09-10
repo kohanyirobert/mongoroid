@@ -9,7 +9,7 @@ public abstract class AbstractMongoConnectionSimpleSingleTest {
 
   protected AbstractMongoConnectionSimpleSingleTest() {}
 
-  // @do-not-check DesignForExtension
+  // @do-not-check-next-line DesignForExtension
   @Before
   public void setUp() throws MongoException {
     connection = MongoConnections.builder()
@@ -17,7 +17,7 @@ public abstract class AbstractMongoConnectionSimpleSingleTest {
             .poolSize(1)
             .build())
         .seed(MongoSeeds.builder()
-            // @do-not-check MagicNumber
+            // @do-not-check-next-3-lines MagicNumber
             .address(27018)
             .address(27019)
             .address(27020)
@@ -31,9 +31,11 @@ public abstract class AbstractMongoConnectionSimpleSingleTest {
     connection.database("test").login("test", "test");
   }
 
-  // @do-not-check DesignForExtension
+  // @do-not-check-next-line DesignForExtension
   @After
   public void tearDown() throws MongoException {
+    connection.database("admin").login("admin", "admin");
+    connection.database("test").login("test", "test");
     connection.database("test").collection("test").remove(MongoRemoves.get());
     connection.close();
   }

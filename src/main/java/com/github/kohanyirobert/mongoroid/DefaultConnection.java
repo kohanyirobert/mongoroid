@@ -1,4 +1,4 @@
-// @do-not-check FileLength
+// @do-not-check-next-line FileLength
 package com.github.kohanyirobert.mongoroid;
 
 import com.github.kohanyirobert.ebson.BsonDocument;
@@ -32,7 +32,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-// @do-not-check Class(DataAbstractionCoupling|FanOutComplexity)
+// @do-not-check-next-line Class(DataAbstractionCoupling|FanOutComplexity)
 final class DefaultConnection implements MongoConnection {
 
   private final MongoConfig config;
@@ -51,7 +51,7 @@ final class DefaultConnection implements MongoConnection {
   private final BsonDocument getLastError;
   private final AtomicBoolean closed = new AtomicBoolean();
 
-  // @do-not-check MethodLength
+  // @do-not-check-next-line MethodLength
   @SuppressWarnings("unchecked")
   DefaultConnection(
       MongoConfig config,
@@ -198,7 +198,7 @@ final class DefaultConnection implements MongoConnection {
     return pick;
   }
 
-  // @do-not-check CyclomaticComplexity
+  // @do-not-check-next-line CyclomaticComplexity
   void ensureLogin(int pick) throws MongoException {
     for (String database : authenticatedDatabases.get(pick))
       if (!logins.containsKey(database)) {
@@ -214,14 +214,14 @@ final class DefaultConnection implements MongoConnection {
       }
   }
 
-  // @do-not-check CyclomaticComplexity|MethodLength|ExecutableStatementCount
+  // @do-not-check-next-line CyclomaticComplexity|MethodLength|ExecutableStatementCount
   int lock(InetSocketAddress address) {
     int pick = -1;
 
     // try to find a socket which is not yet connected
     // or already connected to the address
-    // @do-not-check Indentation
-    OUTER: {
+    // @do-not-check-next-line Indentation
+    OUTER : {
       for (Integer choice : randomPickSequence()) {
 
         Socket socket = sockets.get(choice.intValue());
@@ -270,7 +270,7 @@ final class DefaultConnection implements MongoConnection {
     return Collections.unmodifiableList(choices);
   }
 
-  // @do-not-check CyclomaticComplexity
+  // @do-not-check-next-line CyclomaticComplexity
   void connectIfNecessary(int pick, InetSocketAddress address) throws MongoException {
     Socket socket = sockets.get(pick);
     ByteBuffer buffer = buffers.get(pick);
@@ -381,7 +381,7 @@ final class DefaultConnection implements MongoConnection {
   }
 
   // this method is seriously fucked
-  // @do-not-check .
+  // @do-not-check-next-line .
   MongoMessageReply send(
       int pick,
       MongoMessageRequest request,
@@ -465,7 +465,7 @@ final class DefaultConnection implements MongoConnection {
     return send(socket, buffer, request, MongoSendType.SAY);
   }
 
-  // @do-not-check MethodLength|ExecutableStatementCount|CyclomaticComplexity
+  // @do-not-check-next-line MethodLength|ExecutableStatementCount|CyclomaticComplexity
   MongoMessageReply send(
       Socket socket,
       ByteBuffer buffer,

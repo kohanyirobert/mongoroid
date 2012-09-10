@@ -19,12 +19,12 @@ public final class MongoDatabaseSimpleSingleLoginLogoutTest
     database.logout();
   }
 
-  @Test(expected = MongoLoginException.class)
+  @Test(expected = MongoException.class)
   public void loginWithBadCredentials() throws MongoException {
     database.login("", "");
   }
 
-  @Test(expected = MongoLogoutException.class)
+  @Test(expected = MongoException.class)
   public void logoutWithoutLoggingIn() throws MongoException {
     database.logout();
   }

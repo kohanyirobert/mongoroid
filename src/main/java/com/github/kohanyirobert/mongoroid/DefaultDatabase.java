@@ -37,7 +37,7 @@ final class DefaultDatabase implements MongoDatabase {
   @Override
   public List<MongoCollection> collections() throws MongoException {
     MongoCollection namespaces = collection("system.namespaces");
-    // @do-not-check InnerAssignment
+    // @do-not-check-next-line InnerAssignment
     try (MongoCursor cursor = namespaces.find(MongoFinds.get())) {
       while (cursor.hasNext()) {
         String fullCollectionName = cursor.next().get("name", String.class);
