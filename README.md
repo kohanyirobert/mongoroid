@@ -73,7 +73,7 @@ collection.insert(MongoInserts.builder()
 ```
 ### Advanced Usage
 ```java
-// get a seed list for the database istances you wish to communicate with
+// get a seed list for the database instances you wish to communicate with
 MongoSeed seed = MongoSeeds.builder()
     .address("a.com", 27018)
     .address("b.com", 27019)
