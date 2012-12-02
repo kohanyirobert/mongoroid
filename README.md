@@ -98,7 +98,7 @@ MongoWritePreference writePreference = MongoWritePreferences.builder()
     .journal(true)
     .build();
 
-// finally get a connection using the previously create objects
+// finally get a connection using the previously created objects
 MongoConnection connection = MongoConnections.builder()
     .seed(seed)
     .config(config)
