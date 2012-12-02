@@ -68,8 +68,6 @@ try (MongoCursor cursor = collection.find(MongoFinds.get())) {
 collection.insert(MongoInserts.builder()
     .documents(BsonDocuments.of("key", "value"))
     .build());
-
-// ...
 ```
 ### Advanced Usage
 ```java
@@ -80,7 +78,7 @@ MongoSeed seed = MongoSeeds.builder()
     .address("c.com", 27020)
     .build();
 
-// get a configration for the connection to be create in the following steps
+// get a configration for the connection to be created in the following steps
 MongoConfig config = MongoConfigs.builder()
     .poolSize(3)
     .connectTimeout(10, TimeUnit.SECONDS)
@@ -94,7 +92,7 @@ MongoReadPreference readPreference = MongoReadPreferences.builder()
     .tags(BsonDocuments.of("test", "ok"))
     .build();
 
-// get a write preference which influences the behavior write operations
+// get a write preference which influences the behavior of write operations
 MongoWritePreference writePreference = MongoWritePreferences.builder()
     .w("test")
     .journal(true)
@@ -107,8 +105,6 @@ MongoConnection connection = MongoConnections.builder()
     .readPreference(readPreference)
     .writePreference(writePreference)
     .build();
-
-// ...
 ```
 
 [MongoDB]: http://www.mongodb.org
